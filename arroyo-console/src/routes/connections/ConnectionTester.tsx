@@ -83,11 +83,13 @@ export function ConnectionTester({
       } catch (e) {
         if (e instanceof ConnectError) {
           setError({ title: 'Failed to test connection', body: e.rawMessage });
+          dispatch(setError(e.rawMessage));
         } else {
           setError({
             title: 'Failed to test connection',
             body: 'Something went wrong... try again',
           });
+          dispatch(setError('Something went wrong... try again'));
         }
       }
       setTesting(false);
