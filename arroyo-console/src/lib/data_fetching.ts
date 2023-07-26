@@ -174,15 +174,19 @@ export const useJob = (client: ApiClient, jobId?: string) => {
 
 const jobMetricsFetcher = (client: ApiClient) => {
   return async (params: { jobId: string }) => {
-    return await (
-      await (
-        await client
-      )()
-    ).getJobMetrics(
-      new JobMetricsReq({
-        jobId: params.jobId,
-      })
-    );
+    try {
+      return await (
+        await (
+          await client
+        )()
+      ).getJobMetrics(
+        new JobMetricsReq({
+          jobId: params.jobId,
+        })
+      );
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
   };
 };
 

@@ -68,15 +68,6 @@ const JsonEditor = ({
           }),
         });
         break;
-      case 'rawSchema':
-        setState({
-          ...state,
-          schema: new ConnectionSchema({
-            ...state.schema,
-            definition: { case: 'rawSchema', value: 'value' },
-          }),
-        });
-        break;
     }
   };
 
