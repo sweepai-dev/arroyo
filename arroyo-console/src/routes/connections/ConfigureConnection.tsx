@@ -65,14 +65,16 @@ const ClusterEditor = ({
               config: JSON.stringify(data),
             })
           );
-
+        
           addCluster(resp.connection!);
           onClose();
         } catch (e) {
           if (e instanceof ConnectError) {
             setError(e.rawMessage);
+            dispatch(setError(e.rawMessage));
           } else {
             setError('Something went wrong: ' + e);
+            dispatch(setError('Something went wrong: ' + e));
           }
         }
       }}
