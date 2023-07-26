@@ -217,14 +217,16 @@ export function CreatePipeline({ client }: { client: ApiClient }) {
           },
         })
       );
-
+    
       localStorage.removeItem('query');
       navigate(`/jobs/${resp.jobId}`);
     } catch (e) {
       if (e instanceof ConnectError) {
         setStartError(e.rawMessage);
+        dispatch(setError(e.rawMessage));
       } else {
         setStartError('Something went wrong');
+        dispatch(setError('Something went wrong'));
         console.log('Unhandled error', e);
       }
     }
